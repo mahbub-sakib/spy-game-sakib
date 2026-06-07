@@ -35,11 +35,14 @@ const Game = () => {
 
         // Hide card and move to next player
         setIsFlipped(false);
-        if (currentIndex + 1 >= roles.length) {
-            setPhase("timer");
-        } else {
-            setCurrentIndex(currentIndex + 1);
-        }
+
+        setTimeout(() => {
+            if (currentIndex + 1 >= roles.length) {
+                setPhase("timer");
+            } else {
+                setCurrentIndex(currentIndex + 1);
+            }
+        }, 600);
     }
 
     const minutes = String(Math.floor(timeLeft / 60)).padStart(2, "0");
@@ -169,10 +172,10 @@ const Game = () => {
                     <div
                         key={i}
                         className={`w-2 h-2 rounded-full transition-all ${i < currentIndex
-                                ? "bg-[#e91e8c]"
-                                : i === currentIndex
-                                    ? "bg-[#a78bfa]"
-                                    : "bg-[#2e1060]"
+                            ? "bg-[#e91e8c]"
+                            : i === currentIndex
+                                ? "bg-[#a78bfa]"
+                                : "bg-[#2e1060]"
                             }`}
                     />
                 ))}
