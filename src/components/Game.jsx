@@ -77,10 +77,11 @@ const Game = () => {
                     <span className="text-white font-bold tracking-widest" style={{ fontSize: "64px" }}>
                         {minutes}:{seconds}
                     </span>
+                    <br />
                     <span className="text-[#8b6aaa] text-xs uppercase tracking-widest">minutes : seconds</span>
                 </div>
                 <p className="text-[#8b6aaa] text-sm tracking-wide text-center mt-2">
-                    Ask questions and find the spy before time runs out!
+                    Have fun and find the spy before time runs out!
                 </p>
             </div>
         );
@@ -144,14 +145,16 @@ const Game = () => {
                                     You are the Spy!
                                 </p>
                                 <p className="text-[#8b4a6a] text-xs tracking-wide text-center">
-                                    Find out the location without getting caught
+                                    Find out the topic without getting caught
                                 </p>
                             </>
                         ) : (
                             <>
                                 <span className="text-6xl">📍</span>
-                                <p className="text-[#8b6aaa] text-xs uppercase tracking-widest">Location</p>
-                                <p className="text-white text-3xl font-bold tracking-widest text-center">
+                                <p className="text-[#8b6aaa] text-xs uppercase tracking-widest">Topic</p>
+                                <p
+                                    className="text-white text-3xl font-bold tracking-widest text-center"
+                                    style={{ fontFamily: "'Hind Siliguri', sans-serif" }}>
                                     {currentRole?.location}
                                 </p>
                                 <p className="text-[#5a3f7a] text-xs uppercase tracking-widest mt-2">

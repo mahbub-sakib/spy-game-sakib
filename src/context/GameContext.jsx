@@ -49,12 +49,30 @@ export function useGame() {
 
 // ── Theme Data ──────────────────────────────────────────────
 const THEME_DATA = {
-    Objects: ["Laptop", "Umbrella", "Mirror", "Clock", "Bottle", "Scissors", "Candle", "Backpack"],
-    Sports: ["Football", "Basketball", "Tennis", "Swimming", "Boxing", "Cycling", "Volleyball", "Golf"],
-    Animals: ["Lion", "Elephant", "Dolphin", "Eagle", "Tiger", "Penguin", "Giraffe", "Shark"],
-    Transportations: ["Airplane", "Submarine", "Helicopter", "Train", "Cruise Ship", "Motorcycle", "Hot Air Balloon", "Tram"],
-    Places: ["Hospital", "Library", "Airport", "Museum", "Beach", "Casino", "School", "Restaurant"],
-    Countries: ["Japan", "Brazil", "Egypt", "France", "Australia", "Canada", "India", "Argentina"],
+    Objects: [
+        "ল্যাপটপ", "ছাতা", "আয়না", "ঘড়ি", "বোতল",
+        "কাঁচি", "মোমবাতি", "ব্যাগ", "চেয়ার", "টেবিল"
+    ],
+    Sports: [
+        "ফুটবল", "ক্রিকেট", "টেনিস", "সাঁতার", "বক্সিং",
+        "সাইক্লিং", "ভলিবল", "গলফ", "হকি", "কাবাডি"
+    ],
+    Animals: [
+        "সিংহ", "হাতি", "ডলফিন", "ঈগল", "বাঘ",
+        "পেঙ্গুইন", "জিরাফ", "হাঙর", "বানর", "কুমির"
+    ],
+    Transportations: [
+        "বিমান", "সাবমেরিন", "হেলিকপ্টার", "ট্রেন", "জাহাজ",
+        "মোটরসাইকেল", "বেলুন", "ট্রাম", "বাস", "নৌকা"
+    ],
+    Places: [
+        "হাসপাতাল", "পাঠাগার", "বিমানবন্দর", "জাদুঘর", "সমুদ্র সৈকত",
+        "ক্যাসিনো", "বিদ্যালয়", "রেস্তোরাঁ", "মসজিদ", "বাজার"
+    ],
+    Countries: [
+        "জাপান", "ব্রাজিল", "মিশর", "ফ্রান্স", "অস্ট্রেলিয়া",
+        "কানাডা", "ভারত", "আর্জেন্টিনা", "বাংলাদেশ", "চীন"
+    ],
 };
 
 function getRandomLocation(theme) {
