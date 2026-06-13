@@ -13,7 +13,9 @@ const Game = () => {
     const [allDone, setAllDone] = useState(false);
 
     useEffect(() => {
-        generateRoles();
+        if (roles.length === 0) {
+            generateRoles();
+        }
     }, []);
 
     // Timer countdown

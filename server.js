@@ -9,19 +9,21 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/location", async (req, res) => {
-    const { theme } = req.body;
+    try {
+        const { theme } = req.body;
 
-    const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.SPY_GAME_API_KEY}`,
-        {
+        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${process.env.SPY_GAME_API_KEY}`,
+            },
             body: JSON.stringify({
-                contents: [
+                model: "nex-agi/nex-n2-pro:free",
+                messages: [
                     {
-                        parts: [
-                            {
-                                text: `You are helping with a Spy party game.
+                        role: "user",
+                        content: `You are helping with a Spy party game.
 The current theme is "${theme}".
 Give me ONE random item in Bengali that belongs to this theme.
 Rules:
@@ -29,17 +31,21 @@ Rules:
 - No punctuation, no explanation, no English
 - Must be a common, well known item
 - Example for theme "Objects": মোমবাতি`,
-                            },
-                        ],
                     },
                 ],
             }),
-        }
-    );
+        });
 
-    const data = await response.json();
-    const location = data.candidates[0].content.parts[0].text.trim();
-    res.json({ location });
+        const data = await response.json();
+        console.log("OpenRouter response:", JSON.stringify(data));
+
+        const location = data.choices[0].message.content.trim();
+        res.json({ location });
+
+    } catch (error) {
+        console.error("Server error:", error.message);
+        res.status(500).json({ error: error.message });
+    }
 });
 
 app.listen(3001, () => console.log("Server running on http://localhost:3001"));
