@@ -4,7 +4,7 @@ import { useGame } from "../context/GameContext";
 
 const Game = () => {
     const navigate = useNavigate();
-    const { roles, generateRoles, timer } = useGame();
+    const { roles, generateRoles, timer, loadingRoles } = useGame();
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
@@ -48,6 +48,19 @@ const Game = () => {
     const minutes = String(Math.floor(timeLeft / 60)).padStart(2, "0");
     const seconds = String(timeLeft % 60).padStart(2, "0");
     const currentRole = roles[currentIndex];
+
+
+    // ── Loading Screen ─────────────────────────────────────────
+    if (loadingRoles) {
+        return (
+            <div className="min-h-screen bg-[#0d0620] flex flex-col items-center justify-center px-6 gap-6">
+                <div className="w-16 h-16 border-4 border-[#2e1060] border-t-[#e91e8c] rounded-full animate-spin" />
+                <p className="text-[#8b6aaa] text-sm uppercase tracking-widest">
+                    Loading Theme...
+                </p>
+            </div>
+        );
+    }
 
     // ── Game Over ──────────────────────────────────────────────
     if (allDone) {

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { getLocationFromAI } from "../utils/aiAgent";
 
 const GameContext = createContext();
 
@@ -13,12 +14,20 @@ export function GameProvider({ children }) {
     const [timer, setTimer] = useState(3);
     const [selectedThemes, setSelectedThemes] = useState(["Countries"]);
     const [roles, setRoles] = useState([]);
+    const [loadingRoles, setLoadingRoles] = useState(false);
 
-    function generateRoles() {
+    async function generateRoles() {
+        setLoadingRoles(true);
+
+        const theme = selectedThemes[Math.floor(Math.random() * selectedThemes.length)];
+
+        // Ask AI for a location based on the theme
+        const location = await getLocationFromAI(theme);
+
         const pool = [...players].sort(() => Math.random() - 0.5);
         const spyIds = pool.slice(0, spies).map((p) => p.id);
-        const theme = selectedThemes[Math.floor(Math.random() * selectedThemes.length)];
-        const location = getRandomLocation(theme);
+        // const theme = selectedThemes[Math.floor(Math.random() * selectedThemes.length)];
+        // const location = getRandomLocation(theme);
 
         const assigned = players.map((p) => ({
             ...p,
@@ -28,6 +37,7 @@ export function GameProvider({ children }) {
         }));
 
         setRoles(assigned);
+        setLoadingRoles(false);
     }
 
     return (
@@ -37,6 +47,7 @@ export function GameProvider({ children }) {
             timer, setTimer,
             selectedThemes, setSelectedThemes,
             roles, generateRoles,
+            loadingRoles,
         }}>
             {children}
         </GameContext.Provider>
