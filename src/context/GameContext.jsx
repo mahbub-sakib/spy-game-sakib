@@ -12,7 +12,7 @@ export function GameProvider({ children }) {
     const [players, setPlayers] = useState(defaultPlayers);
     const [spies, setSpies] = useState(1);
     const [timer, setTimer] = useState(3);
-    const [selectedThemes, setSelectedThemes] = useState(["Countries"]);
+    const [selectedThemes, setSelectedThemes] = useState(["Objects"]);
     const [roles, setRoles] = useState([]);
     const [loadingRoles, setLoadingRoles] = useState(false);
 
